@@ -1,153 +1,155 @@
-// var urlForId = "https://jsonplaceholder.typicode.com/users";
-// var urlForPost = "https://jsonplaceholder.typicode.com/posts";
-// let allcont = document.getElementById("main");
-//     let cont2 = document.getElementById("main2")
+// create Post 
 
-// async function fetchingUser() {
-//     let fetchingApi = await fetch(urlForId)
-//     let fetchingPosts = await fetch(urlForPost);
-//     let post = await fetchingPosts.json();
-//     console.log(post);
+let createPostModal = document.getElementById("create-post");
+let createPostName = document.getElementById("create-name");
+let createPostTitle = document.getElementById("create-title");
+let createPostAvatar = document.getElementById("create-avatar");
+let createPostURL = document.getElementById("create-postURL");
+let createPostBody = document.getElementById("create-body");
+let createPostbtn = document.querySelector(".create-butn");
 
+// Edit post
 
-//     let user = await fetchingApi.json();
-//     console.log(user);
-//     for(let i = 0; i < user.length; i++){
-//         // if(userId==)
-//         const userIds = document.createElement("h2")
-//         userIds.innerText = `User ID: ${user[i].id}`
+let editPostModal = document.getElementById("ubdate-post");
+let editPostName = document.getElementById("edit-name");
+let editPostTitle = document.getElementById("edit-title");
+let editPostAvatar = document.getElementById("edit-avatar");
+let editPostURL = document.getElementById("edit-postURL");
+let editPostbody = document.getElementById("edit-body");
+let editPostbtn = document.querySelector(".edit-butn");
 
-//         for (let j = 0; j < post.length; j++){
-//             const postIds = document.createElement("h2")
-//             postIds.innerText = `User : ${post[j].title}`
+document.querySelector("#post-cont").addEventListener("click", () => {
+    createPostModal.style.display = "block";
+});
 
-//             cont2.appendChild(postIds)
-//         }
-//         allcont.appendChild(userIds)
-//     }
+document.querySelectorAll(".close-btn").forEach(closeContent => {
+    closeContent.addEventListener("click", () => {
+        createPostModal.style.display = "none";
+        editPostModal.style.display = "none";
+    });
+});
+createPostbtn.addEventListener("click", () => {
+    if (createPostAvatar.value === "" || createPostName.value === "" || createPostTitle.value === "" || createPostBody.value === "" || createPostURL === "") {
+        alert("Fill The All Input!")
+    } else {
 
-//     // user.forEach(idGet => {
-//     //     const id1 = document.createElement("h2")
-//     //     id1.innerText= `User ID: ${idGet.id}`
+        let cont = document.querySelector(".js-post")
+        let postRow =
+            `
+     <div class="post">
+      <div class="post-header">
+        <img src="${createPostAvatar.value}" alt="Avatar" onerror="this.src='assets/profile.jpg';">
+       <div>
+         <h6>${createPostName.value}</h6>
+         <small>${new Date().toLocaleString()}</small>
+      </div>
+       </div>
+        <p class="post_title">${createPostTitle.value}</p>
+        <div class="post-image">
+        <img src="${createPostURL.value}" alt="Uploaded Image" onerror="this.src='assets/profile.jpg';">
+        </div>
+        <p class="post-body">${createPostBody.value}</p>
+        <div class="actions">
+            <button class="edit-btn" onclick="editPost(this)">Edit</button>
+            <button class="delete-btn" onclick="deletePost(this)">Delete</button>
+        </div>
+        </div>
+        `
+        createPostName.value = "";
+        createPostTitle.value = "";
+        createPostBody.value = "";
+        createPostURL.value = "";
+        createPostAvatar.value = "";
 
-//     //     const id2 = document.createElement("h2")
-//     //     id2.innerText= `User Name: ${idGet.name}`
-//     //     allcont.appendChild(id1)
-//     //     allcont.appendChild(id2)
-//     // });
-//     //return user;
+        createPostModal.style.display = "none";
+        cont.innerHTML += postRow
+    }
+})
 
-// }
+function editPost(button) {
+    // let postBtn = button.querySelector(".post");
+    let postBtn = button.closest(".post")
+    let postName = postBtn.querySelector("h6").innerText;
+    let postTitle = postBtn.querySelector(".post_title").innerText;
+    let postBody = postBtn.querySelector(".post-body").innerText;
+    let postAvatar = postBtn.querySelector(".post-header img").src;
+    let postImage = postBtn.querySelector(".post-image img").src;
 
-// fetchingUser()
-// // let allinone = fetchingUser()
-// // allinone.then((msg) => {
-// //     console.log(msg);
+    editPostName.value = postName;
+    editPostTitle.value = postTitle;
+    editPostbody.value = postBody;
+    editPostAvatar.value = postAvatar;
+    editPostURL.value = postImage;
+    // console.log(editPostName.value);
 
-// //     let allcont = document.getElementById("main");
-// //     msg.forEach(allId => {
+    editPostModal.style.display = "block";
 
-// //         const userid = document.createElement("h2");
-// //         userid.textContent = `Ùsers ID: ${allId.id}`
-
-// //         const userName = document.createElement("h3")
-// //         userName.textContent = `User Name! ${allId.name}`
-
-// //         allcont.appendChild(userid);
-// //         allcont.appendChild(userName)
-
-// //     });
-
-//     // msg.forEach(postId => {
-//     //     const postid = document.createElement("h3");
-//     //     postid.textContent = `Post Id! ${postId.title}`
-
-//     //     allcont.appendChild(postid)
-//     // })
-
-// // }).catch((error) => {
-// //     console.log(error);
-
-// // });
-
-
-
-
-// // async function fetchingPost() {
-// //     let fetchingPosts = await fetch(urlForPost);
-// //     // console.log(fet);
-// //     let post = await fetchingPosts.json();
-// //     return post;
-// // }
-// // let abc = fetchingPost()
-
-// // abc.then((msg) => {
-// //     console.log(msg);
-// //     let cont2 = document.getElementById("main2")
-// //     msg.forEach(allPst => {
-// //         const post1 = document.createElement("h4")
-// //         post1.textContent = `Posts ${allPst.userId}`
-
-// //         const post2 = document.createElement("h4")
-// //         post2.textContent = `Posts ${allPst.title}`
-// //         cont2.appendChild(post1)
-// //         cont2.appendChild(post2)
-// //     });
-// // });
-
-
-
-let container = document.getElementById("cont")
-async function fetchData() {
-    let userUrl = await fetch("https://jsonplaceholder.typicode.com/users");
-    let postUrl = await fetch("https://jsonplaceholder.typicode.com/posts");
-
-    let users = await userUrl.json()
-    let posts = await postUrl.json()
-    console.log(posts);
-
-    return { users, posts };
-
+    editPostbtn.addEventListener("click", () => {
+        if (editPostName === "" || editPostTitle === "" || editPostbody === "" || editPostAvatar === "" || editPostURL === ""){
+            alert("Fill The All Input")
+        } else {
+            postBtn.querySelector("h6").innerText = editPostName.value;
+            postBtn.querySelector(".post_title").innerText = editPostTitle.value;
+            postBtn.querySelector(".post-body").innerText = editPostbody.value;
+            postBtn.querySelector(".post-header img").src = editPostAvatar.value;
+            postBtn.querySelector(".post-image img").src = editPostURL.value;
+        }
+        editPostModal.style.display = "none";
+    })
 }
 
-fetchData().then(({ users, posts }) => {
-    for (let i = 0; i < users.length; i++) {
-        let user = users[i];
+function deletePost(button) {
+    let post = button.closest(".post");
+    post.remove();
+}
 
-        const userCard = document.createElement("div");
-        userCard.classList.add("post-cards");
+// async function postFun() {
+//     const URL = await fetch("https://66f91c912a683ce97310eea0.mockapi.io/api/vi/posts");
+//     const URLData = await URL.json()
+//     console.log(URLData);
 
-        const userId = document.createElement("h2")
-        userId.innerText = `User Id: ${user.id}`
-        userCard.appendChild(userId)
+//     return URLData
+// }
 
-        const userName = document.createElement("h2")
-        userName.innerText = `User Name: ${user.name}`
-        userCard.appendChild(userName)
+// postFun().then((URLData) =>{
+// let container = document.getElementById("cont")
+//     URLData.forEach(ele =>{
+//         let rowss = ` <div class="post">
+//     <div class="post">
+//         <div class="post-header">
+//             <img src="${ele.avatar}" width="100px" alt="Avatar">
+//             <div>
+//                 <h3>${ele.name}</h3>
+//                 <small>${new Date().toLocaleString()}</small>
+//             </div>
+//         </div>
+//         <p>${ele.body}</p>
+//         <div class="actions">
+//             <button class="edit-btn" onclick="editPost(1)">Edit</button>
+//             <button class="delete-btn" onclick="deletePost(1)">Delete</button>
+//         </div>
+//     </div>
+// </div> `
+// container.innerHTML += rowss
+//     })
+// })
 
-        for (let j = 0; j < posts.length; j++) {
-            let post = posts[j]
 
-            if (post.userId === user.id) {
-                const postId = document.createElement("h4");
-                postId.innerText = `Post: ${post.id}`
-                userCard.appendChild(postId)
 
-                const postTitle = document.createElement("h4");
-                postTitle.innerText = `Title: ${post.title}`
-                userCard.appendChild(postTitle)
-
-                const postBody = document.createElement("h4");
-                postBody.innerText = `Body: ${post.body}`
-                userCard.appendChild(postBody)
-
-            };
-
-            container.appendChild(userCard)
-
-        };
-    };
-}).catch((error) => {
-    alert("Fetching Error!", error);
-
-});
+//  <h2>posts</h2>
+{/* <div class="post">
+    <div class="post">
+        <div class="post-header">
+            <img src="nav-logo.png" alt="Avatar">
+            <div>
+                <h3>Muhammad Saqib (Developer)</h3>
+                <small>9/29/2024, 10:30 AM</small>
+            </div>
+        </div>
+        <p>This is the post body content.</p>
+        <div class="actions">
+            <button class="edit-btn" onclick="editPost(1)">Edit</button>
+            <button class="delete-btn" onclick="deletePost(1)">Delete</button>
+        </div>
+    </div>
+</div>  */}

@@ -45,10 +45,12 @@ html {
     color: blue;
     transition: 200ms ease;
 }
+
 .bi-person-add:hover {
     color: rgb(144, 144, 185);
     transition: 200ms ease;
 }
+
 .bi-list:hover {
     color: rgb(0, 206, 51);
     transition: 200ms ease;
@@ -60,21 +62,25 @@ html {
         gap: 4rem;
         margin-left: 20rem;
     }
+
     .right-icon {
         font-size: 1.5rem;
         display: flex;
         gap: 1rem;
         padding-left: 2.5rem;
     }
+
     /* .sear input{
         width: 40%;;
     } */
 }
+
 @media screen and (max-width:1020px) {
     .center-icons {
         display: flex;
         gap: 2.3rem;
     }
+
     .right-icon {
         padding-left: 3rem;
     }
@@ -103,6 +109,7 @@ html {
         width: 25%;
     }
 }
+
 @media screen and (max-width:920px) {
     #left-container {
         display: none;
@@ -136,6 +143,7 @@ li .bi {
     font-size: 1.3rem;
     text-align: center;
 }
+
 /* Main Sec Left Cont End */
 
 
@@ -329,6 +337,7 @@ li .bi {
     padding-bottom: 1rem;
     overflow-y: auto;
 }
+
 @media screen and (max-width: 1000px) {
     #right-container {
         width: 30%;
@@ -404,42 +413,116 @@ li .bi {
 
 
 
-
-
-
-
-
 #cont {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 4rem;
 }
 
-.post-cards {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+/* Modal content */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
     width: 100%;
-    max-width: 600px;
-    margin-bottom: 20px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    overflow-y: auto; 
+}
+
+#createPostForm {
+    background-color: white;
+    margin: 1% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+    max-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-y: auto;
+}
+
+
+.close-btn {
+    color: red;
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+}
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    /* border-radius:  */
+}
+
+textarea {
+    height: 100px;
+}
+
+button {
+    padding: 8px 30px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.butn:hover {
+    background-color: #0056b3;
+}
+
+.edit-btn,
+.delete-btn {
+    background-color: #28a745;
+    margin-right: 10px;
+    border-radius: 2rem;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+    opacity: 0.8;
+}
+
+.post {
+    background-color: #f9f9f9;
     padding: 15px;
-    box-sizing: border-box;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 100%;
 }
 
-.post-cards h2 {
-    margin: 0;
-    font-size: 1.2rem;
-    color: #333;
+.post-header {
+    display: flex;
+    align-items: center;
 }
 
-.post-cards h4 {
-    margin: 5px 0;
-    font-size: 1rem;
-    color: #555;
+.post-header img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
 }
 
-.post-cards p {
-    margin: 5px 0;
-    font-size: 0.9rem;
-    color: #666;
+.actions {
+    margin-top: 10px;
+}
+.post-image img{
+    border-radius: .5rem;
+    max-height: 80vh;
+    width: 100%;
+    object-fit:cover;
+    margin-bottom: 1rem;
 }
